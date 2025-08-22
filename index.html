@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit & Number Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .result-card {
+            transition: all 0.3s ease;
+        }
+        .result-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+    <div class="w-full max-w-4xl mx-auto">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4">
+                <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold text-white mb-2">Fruit & Number Analyzer</h1>
+            <p class="text-purple-100 opacity-90">Explore the magic of numbers and fruits with our interactive analyzer</p>
+        </div>
+
+        <!-- Input Section -->
+        <div class="glass-effect rounded-2xl p-8 mb-8">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-white text-sm font-medium mb-2">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" class="w-full px-4 py-3 rounded-lg bg-white/90 border border-white/20 focus:ring-2 focus:ring-purple-300 focus:border-transparent outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-white text-sm font-medium mb-2">Your Number</label>
+                    <input type="number" id="number" placeholder="Enter any number" class="w-full px-4 py-3 rounded-lg bg-white/90 border border-white/20 focus:ring-2 focus:ring-purple-300 focus:border-transparent outline-none transition-all">
+                </div>
+            </div>
+            
+            <button onclick="analyze()" class="w-full mt-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                Analyze
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="glass-effect rounded-2xl p-8 hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-white mb-2">Analysis Results</h2>
+                <p class="text-purple-100">Your personalized analysis is ready!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Arithmetic Results -->
+                <div class="result-card bg-white/10 rounded-xl p-6">
+                    <h3 class="text-white font-semibold mb-4">Arithmetic Operations</h3>
+                    <div class="space-y-2 text-purple-100">
+                        <p id="sum-result">Sum: -</p>
+                        <p id="difference-result">Difference: -</p>
+                        <p id="product-result">Product: -</p>
+                        <p id="quotient-result">Quotient: -</p>
+                    </div>
+                </div>
+
+                <!-- String Results -->
+                <div class="result-card bg-white/10 rounded-xl p-6">
+                    <h3 class="text-white font-semibold mb-4">String Transformations</h3>
+                    <div class="space-y-2 text-purple-100">
+                        <p id="uppercase-result">Uppercase: -</p>
+                        <p id="lowercase-result">Lowercase: -</p>
+                    </div>
+                </div>
+
+                <!-- Number Analysis -->
+                <div class="result-card bg-white/10 rounded-xl p-6">
+                    <h3 class="text-white font-semibold mb-4">Number Analysis</h3>
+                    <div class="space-y-2 text-purple-100">
+                        <p id="if-statement-result">If Statement: -</p>
+                        <p id="ternary-result">Ternary Operator: -</p>
+                    </div>
+                </div>
+
+                <!-- Loop Results -->
+                <div class="result-card bg-white/10 rounded-xl p-6">
+                    <h3 class="text-white font-semibold mb-4">Loop Results</h3>
+                    <div class="space-y-2 text-purple-100">
+                        <p id="for-loop-result">Numbers 1 to N: -</p>
+                        <p id="while-loop-result">Countdown: -</p>
+                    </div>
+                </div>
+
+                <!-- Factors Results -->
+                <div class="result-card bg-white/10 rounded-xl p-6">
+                    <h3 class="text-white font-semibold mb-4">Factors</h3>
+                    <div class="space-y-2 text-purple-100">
+                        <p id="factors-result">Factors: -</p>
+                    </div>
+                </div>
+
+                <!-- Fruits Results -->
+                <div class="result-card bg-white/10 rounded-xl p-6 md:col-span-2 lg:col-span-1">
+                    <h3 class="text-white font-semibold mb-4">Favorite Fruits</h3>
+                    <div class="text-purple-100" id="fruits-result">
+                        Your favorite fruits will appear here
+                    </div>
+                </div>
+            </div>
+
+            <!-- Greeting -->
+            <div class="text-center">
+                <p id="greeting" class="text-xl text-white font-semibold">Hello there!</p>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="text-center mt-8">
+            <p class="text-purple-100 text-sm opacity-70">Fritz's Fruit & Name Analyzer</p>
+        </div>
+    </div>
+
+    <script>
+        function analyze() {
+            const name = document.getElementById('name').value;
+            const userNumber = parseFloat(document.getElementById('number').value);
+            const BASE_NUMBER = 10;
+
+            if (!name || isNaN(userNumber)) {
+                alert('Please enter both your name and a valid number!');
+                return;
+            }
+
+            // Arithmetic Operations
+            const sum = BASE_NUMBER + userNumber;
+            const difference = BASE_NUMBER - userNumber;
+            const product = BASE_NUMBER * userNumber;
+            const quotient = (BASE_NUMBER / userNumber).toFixed(2);
+
+            // String Operations
+            const sentence = prompt("Enter a short sentence:");
+            if (!sentence) {
+                alert('Please enter a sentence to continue!');
+                return;
+            }
+            const upperCaseSentence = sentence.toUpperCase();
+            const lowerCaseSentence = sentence.toLowerCase();
+
+            // If Statements
+            let positivityMessage;
+            if (userNumber >= 0) {
+                positivityMessage = "Your number is positive 👍";
+            } else {
+                positivityMessage = "Your number is negative 👎";
+            }
+
+            // Ternary Operator
+            const positivityMessageTernary = userNumber >= 0 ? "Positive number detected! ✅" : "Negative number detected! ❌";
+
+            // Loops
+            let numberList = "";
+            for (let i = 1; i <= userNumber; i++) {
+                numberList += i + (i < userNumber ? ", " : "");
+            }
+
+            let countdown = 5;
+            let countdownList = "";
+            while (countdown > 0) {
+                countdownList += countdown + (countdown > 1 ? ", " : "");
+                countdown--;
+            }
+
+            // Factors Calculation
+            const factors = [];
+            for (let i = 1; i <= userNumber; i++) {
+                if (userNumber % i === 0) {
+                    factors.push(i);
+                }
+            }
+
+            // Functions
+            function greetUser (name) {
+                return `Hello, ${name}! 👋`;
+            }
+
+            // Fruits Input
+            const fruits = [];
+            for (let i = 0; i < 3; i++) {
+                const fruit = prompt(`Enter your favorite fruit #${i + 1}:`);
+                if (fruit) {
+                    fruits.push(fruit);
+                }
+            }
+
+            // Update UI
+            document.getElementById('sum-result').textContent = `Sum: ${BASE_NUMBER} + ${userNumber} = ${sum}`;
+            document.getElementById('difference-result').textContent = `Difference: ${BASE_NUMBER} - ${userNumber} = ${difference}`;
+            document.getElementById('product-result').textContent = `Product: ${BASE_NUMBER} × ${userNumber} = ${product}`;
+            document.getElementById('quotient-result').textContent = `Quotient: ${BASE_NUMBER} ÷ ${userNumber} = ${quotient}`;
+            
+            document.getElementById('uppercase-result').textContent = `Uppercase: ${upperCaseSentence}`;
+            document.getElementById('lowercase-result').textContent = `Lowercase: ${lowerCaseSentence}`;
+            
+            document.getElementById('if-statement-result').textContent = `If Statement: ${positivityMessage}`;
+            document.getElementById('ternary-result').textContent = `Ternary Operator: ${positivityMessageTernary}`;
+            
+            document.getElementById('for-loop-result').textContent = `Numbers 1 to ${userNumber}: ${numberList}`;
+            document.getElementById('while-loop-result').textContent = `Countdown from 5: ${countdownList}`;
+            
+            document.getElementById('factors-result').textContent = `Factors: ${factors.join(', ') || 'None'}`;
+            
+            document.getElementById('fruits-result').innerHTML = fruits.length > 0 
+                ? `🍓 ${fruits.join('<br>🍊 ')}`
+                : 'No fruits entered';
+            
+            document.getElementById('greeting').textContent = greetUser (name);
+            
+            // Show results
+            document.getElementById('results').classList.remove('hidden');
+            
+            // Smooth scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
