@@ -28,7 +28,7 @@
 </head>
 <body class="flex items-center justify-center p-4">
     <div class="w-full max-w-4xl mx-auto">
-        <!-- Header Section -->
+       
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4">
                 <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
@@ -39,7 +39,7 @@
             <p class="text-purple-100 opacity-90">Explore the magic of numbers and fruits with our interactive analyzer</p>
         </div>
 
-        <!-- Input Section -->
+        
         <div class="glass-effect rounded-2xl p-8 mb-8">
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
@@ -57,7 +57,7 @@
             </button>
         </div>
 
-        <!-- Results Section -->
+       
         <div id="results" class="glass-effect rounded-2xl p-8 hidden">
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold text-white mb-2">Analysis Results</h2>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <!-- String Results -->
+                
                 <div class="result-card bg-white/10 rounded-xl p-6">
                     <h3 class="text-white font-semibold mb-4">String Transformations</h3>
                     <div class="space-y-2 text-purple-100">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-                <!-- Number Analysis -->
+                
                 <div class="result-card bg-white/10 rounded-xl p-6">
                     <h3 class="text-white font-semibold mb-4">Number Analysis</h3>
                     <div class="space-y-2 text-purple-100">
@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                <!-- Loop Results -->
+            
                 <div class="result-card bg-white/10 rounded-xl p-6">
                     <h3 class="text-white font-semibold mb-4">Loop Results</h3>
                     <div class="space-y-2 text-purple-100">
@@ -103,7 +103,7 @@
                     </div>
                 </div>
 
-                <!-- Factors Results -->
+              
                 <div class="result-card bg-white/10 rounded-xl p-6">
                     <h3 class="text-white font-semibold mb-4">Factors</h3>
                     <div class="space-y-2 text-purple-100">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
 
-                <!-- Fruits Results -->
+      
                 <div class="result-card bg-white/10 rounded-xl p-6 md:col-span-2 lg:col-span-1">
                     <h3 class="text-white font-semibold mb-4">Favorite Fruits</h3>
                     <div class="text-purple-100" id="fruits-result">
@@ -120,13 +120,13 @@
                 </div>
             </div>
 
-            <!-- Greeting -->
+    
             <div class="text-center">
                 <p id="greeting" class="text-xl text-white font-semibold">Hello there!</p>
             </div>
         </div>
 
-        <!-- Decorative Elements -->
+  
         <div class="text-center mt-8">
             <p class="text-purple-100 text-sm opacity-70">Fritz's Fruit & Name Analyzer</p>
         </div>
@@ -143,13 +143,12 @@
                 return;
             }
 
-            // Arithmetic Operations
+        
             const sum = BASE_NUMBER + userNumber;
             const difference = BASE_NUMBER - userNumber;
             const product = BASE_NUMBER * userNumber;
             const quotient = (BASE_NUMBER / userNumber).toFixed(2);
 
-            // String Operations
             const sentence = prompt("Enter a short sentence:");
             if (!sentence) {
                 alert('Please enter a sentence to continue!');
@@ -158,7 +157,7 @@
             const upperCaseSentence = sentence.toUpperCase();
             const lowerCaseSentence = sentence.toLowerCase();
 
-            // If Statements
+         
             let positivityMessage;
             if (userNumber >= 0) {
                 positivityMessage = "Your number is positive 👍";
@@ -166,10 +165,9 @@
                 positivityMessage = "Your number is negative 👎";
             }
 
-            // Ternary Operator
+            
             const positivityMessageTernary = userNumber >= 0 ? "Positive number detected! ✅" : "Negative number detected! ❌";
 
-            // Loops
             let numberList = "";
             for (let i = 1; i <= userNumber; i++) {
                 numberList += i + (i < userNumber ? ", " : "");
@@ -182,7 +180,7 @@
                 countdown--;
             }
 
-            // Factors Calculation
+            
             const factors = [];
             for (let i = 1; i <= userNumber; i++) {
                 if (userNumber % i === 0) {
@@ -190,12 +188,12 @@
                 }
             }
 
-            // Functions
+         
             function greetUser (name) {
                 return `Hello, ${name}! 👋`;
             }
 
-            // Fruits Input
+            
             const fruits = [];
             for (let i = 0; i < 3; i++) {
                 const fruit = prompt(`Enter your favorite fruit #${i + 1}:`);
@@ -204,7 +202,7 @@
                 }
             }
 
-            // Update UI
+           
             document.getElementById('sum-result').textContent = `Sum: ${BASE_NUMBER} + ${userNumber} = ${sum}`;
             document.getElementById('difference-result').textContent = `Difference: ${BASE_NUMBER} - ${userNumber} = ${difference}`;
             document.getElementById('product-result').textContent = `Product: ${BASE_NUMBER} × ${userNumber} = ${product}`;
@@ -227,12 +225,13 @@
             
             document.getElementById('greeting').textContent = greetUser (name);
             
-            // Show results
+            
             document.getElementById('results').classList.remove('hidden');
             
-            // Smooth scroll to results
+            
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
 </html>
+
